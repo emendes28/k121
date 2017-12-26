@@ -31,6 +31,7 @@
   "homepage": "https://github.com/emendes28/k121#readme"
   ,
   "dependencies": {
+    "@angular/cli": "^1.6.0-rc.1",
     "@angular/animations": "^5.0.0",
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
