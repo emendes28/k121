@@ -1,0 +1,21 @@
+<div class="container">
+    <h1 translate>titleAdd</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <form (ngSubmit)="save()" #participantForm="ngForm">
+          <div class="form-group">
+            <label for="name" translate>nameHead</label>
+            <input type="text" class="form-control" [(ngModel)]="participant.name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email" translate>emailHead</label>
+            <input type="email" class="form-control" [(ngModel)]="participant.email" name="email" required>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-success" [disabled]="!participantForm.form.valid" translate >saveBtn </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

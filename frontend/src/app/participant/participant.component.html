@@ -1,0 +1,30 @@
+<div class="container">
+    <a [routerLink]="['/participant-create']" class="btn btn-default btn-lg">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </a>
+  <h1 translate>Title</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th translate>nameHead</th>
+        <th translate>emailHead</th>
+        <th translate>friendHead</th>
+        
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let participant of participants">
+        <td>{{ participant.name}}</td>
+        <td>{{ participant.email}}</td>
+        <td>{{ participant.friend}}</td>
+        <td translate (click)="edit(participant)">            
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            editOp</td>
+        <td translate (click)="delete(participant)">            
+              <span class="glyphicon glyphicon-bin" aria-hidden="true"></span>
+            deleteOp</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

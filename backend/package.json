@@ -1,0 +1,32 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend for secret-friend",
+  "main": "app.js",
+  "scripts": {
+    "start": "node bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emendes28/k121.git"
+  },
+  "keywords": [
+    "backend"
+  ],
+  "author": "Evandro Mendes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emendes28/k121/issues"
+  },
+  "homepage": "https://github.com/emendes28/k121#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mailgun-js": "^0.14.0",
+    "mongoose": "^4.13.7",
+    "morgan": "^1.9.0",
+    "serve-favicon": "^2.4.5"
+  }
+}

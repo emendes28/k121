@@ -1,0 +1,29 @@
+{
+  "name": "simple-secret-friend",
+  "version": "1.0.0",
+  "description": "one app for secret friend ",
+  "main": "routes/participants.js",
+  "scripts": {
+    "start": "cd frontend && ng build && node ../backend/bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cd frontend && ng build --prod --aot --build-optimizer && node  ../backend/bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emendes28/k121.git"
+  },
+  "keywords": [
+    "secret",
+    "friend",
+    "amigo",
+    "secreto",
+    "simples",
+    "simple"
+  ],
+  "author": "Evandro Mendes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emendes28/k121/issues"
+  },
+  "homepage": "https://github.com/emendes28/k121#readme"
+}
