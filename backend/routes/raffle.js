@@ -3,9 +3,16 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Participant = require('../models/Participant.js');
 const api_key = 'key-2aa1b759638496b6a1f56b9257d76940';
-const domain = 'simple-secret-friend.herokuapp.com';
+const domain = 'sandboxd3df4a81cf18480bbc9c40b86cea7076.mailgun.org';
 const mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
-
+let friend = "";
+const ParticipantClass = class  { 
+  constructor(n,e,f) {
+    this.friend = f;
+    this.name = n;
+    this.email = e;
+  }
+}
 const htmlEmail = (who) => `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +51,7 @@ const htmlEmail = (who) => `<!DOCTYPE html>
 </html>`;
 const mail =  (to,who) => { 
   return {
-    from: 'Chief of Secret <evandro.s.i.mendes@hotmail.com>',
+    from: 'Chief of Secret <postmaster@sandboxd3df4a81cf18480bbc9c40b86cea7076.mailgun.org>',
     to: to,
     subject: 'Secret Friend',
     text: htmlEmail(who)
@@ -54,20 +61,30 @@ const mail =  (to,who) => {
 
 const sortParticipants = (all,name) => {
   all.forEach(p=> {
-    if(p.name != name){
-      return p.name;
+    let friend = p.name;
+    if(friend != name){
+      console.log(`name atual ${name} amigo ${p.name}`);
+      this.friend =  friend;
+      return;
     }
   })
 }
 /* Raffle between participants. */
-router.post('/', (req, res, next) => {
-  const participants = req.body;
-    participants.forEach(p => {            
-      p.friend = sortParticipants(participants,p.name);
-      Participant.findByIdAndUpdate(p.id, p, (err, p) => {
-        if (err) return next(err);
-      })
-    })
+router.get('/', (req, res, next) => {
+  const participantsWithFriend = [];
+  Participant.find( (err, participants) => {
+    if (err) return next(err);
+    console.log(participants);
+  participants.forEach(p => {            
+      sortParticipants(participants,p.name);      
+      participantsWithFriend.push(new ParticipantClass(p.name,p.email,this.friend));
+      Participant.findByIdAndUpdate(p.id, p);
+      mailgun.messages().send(mail(p.to,this.friend));
+    });
+    
+    console.log(participantsWithFriend);
+    res.json(participantsWithFriend);
+  });
 });
 
 

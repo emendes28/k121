@@ -53,8 +53,7 @@ export class ParticipantComponent implements OnInit {
 
 
   sortition(){
-    this.data.sortitionParticipants();     
-    this.data.getParticipants().subscribe(res => this.participants = res);
+    this.data.sortitionParticipants().subscribe(res => this.participants = res);
   }
 
 

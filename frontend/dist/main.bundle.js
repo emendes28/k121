@@ -291,11 +291,7 @@ var DataService = (function () {
         return this.http.delete("" + this.apiRoot + participant._id);
     };
     DataService.prototype.sortitionParticipants = function () {
-        var participants = this.participants.value;
-        if (!participants) {
-            participants = [];
-        }
-        this.http.post(this.apiRaffle, participants);
+        return this.http.get(this.apiRaffle, {});
     };
     DataService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
@@ -588,8 +584,7 @@ var ParticipantComponent = (function () {
     };
     ParticipantComponent.prototype.sortition = function () {
         var _this = this;
-        this.data.sortitionParticipants();
-        this.data.getParticipants().subscribe(function (res) { return _this.participants = res; });
+        this.data.sortitionParticipants().subscribe(function (res) { return _this.participants = res; });
     };
     ParticipantComponent.prototype.edit = function (participant) {
         this.router.navigate(['/participant-create', participant._id]);

@@ -121,7 +121,7 @@ module.exports = __webpack_require__.p + "glyphicons-halflings-regular.448c34a56
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
-exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Raleway:300,700);", ""]);
+
 
 // module
 exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n\nbody {\n    font-family: 'Raleway', 'Arial';\n    color:navy;\n}\nul {\n    list-style-type:none;\n    margin:0 0 2em 0;\n    padding:0;\n}\nul li {\n    display:inline;\n    margin-right: 30px;\n}\na {\n    color:#fff;\n    text-decoration:none;\n}", ""]);

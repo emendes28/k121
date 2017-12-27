@@ -38,12 +38,8 @@ export class DataService {
     return this.http.delete(`${this.apiRoot}${participant._id}`);
   }
   
-  sortitionParticipants() {
-    let participants = this.participants.value;
-    if(!participants){
-      participants = [];
-    }
-    this.http.post(this.apiRaffle,participants);
+  sortitionParticipants():Observable<Participant[]> {
+    return this.http.get<Participant[]>(this.apiRaffle,{});
   }
 
 }
