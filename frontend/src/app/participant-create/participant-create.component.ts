@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ParticipantCreateComponent implements OnInit {
 
-  participant: Participant = new Participant();
+  participant: Participant;
 
   constructor(private data: DataService, private route: ActivatedRoute, private router: Router,
     private translate: TranslateService) {
@@ -20,6 +20,7 @@ export class ParticipantCreateComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.route.snapshot.params['id']== undefined ? this.participant = new Participant():
     this.getParticipantDetail(this.route.snapshot.params['id']);
   }
 

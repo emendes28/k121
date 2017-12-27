@@ -6,5 +6,6 @@
     "editOp": "Modifier",
     "deleteOp": "Effacer",
     "titleAdd": "Ajouter un nouveau participant",
-    "saveBtn" : "Enregistrer"
+    "saveBtn" : "Enregistrer",
+    "sortitionBtn" : "Dessiner"
 }

@@ -6,5 +6,6 @@
     "editOp": "",
     "deleteOp": "",
     "titleAdd": "Adicionar novo Participante",
-    "saveBtn" : "Salvar"
+    "saveBtn" : "Salvar",
+    "sortitionBtn" : "Realizar Sorteio"
 }

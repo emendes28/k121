@@ -6,5 +6,6 @@
     "editOp": "Edit",
     "deleteOp": "Delete",
     "titleAdd": "Add new Participant",
-    "saveBtn" : "Save"
+    "saveBtn" : "Save",
+    "sortitionBtn" : "Raffle"
 }

@@ -30,4 +30,9 @@ export class ParticipantComponent implements OnInit {
   delete(participant:Participant){
     this.data.deleteParticipant(participant);
   }
+
+
+  sortition(){
+    this.data.sortition().subscribe(res => this.participants = res);  
+  }
 }

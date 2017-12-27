@@ -32,5 +32,10 @@ export class DataService {
   deleteParticipant(participant:Participant):Observable<any> {
     return this.http.delete(`${this.apiRoot}${participant.id}`);
   }
+  sortition():Observable<Participant[]> {
+    let participants = this.http.get<Participant[]>(`${this.apiRoot}ruffle`);
+    this.participant = participants;
+    return participants;
+  }
 
 }
