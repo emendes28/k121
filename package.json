@@ -5,6 +5,7 @@
   "main": "backend/app.js",
   "scripts": {
     "start": "node ./backend/bin/www",
+    "local" : "cd frontend && ng build && cd .. && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
