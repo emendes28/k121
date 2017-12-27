@@ -1,0 +1,10 @@
+{
+    "Title": "Secret Friend",
+    "nameHead": "Name",
+    "emailHead": "Email",
+    "friendHead": "Friend",
+    "editOp": "Edit",
+    "deleteOp": "Delete",
+    "titleAdd": "Add new Participant",
+    "saveBtn" : "Save"
+}

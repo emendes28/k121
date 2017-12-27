@@ -13,8 +13,8 @@ mongoose.Promise = require('bluebird');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 'extended': 'false' }));
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
-app.use('/participants', express.static(path.join(__dirname, '../frontend/dist')));
+app.use(express.static(path.join(__dirname, '../dist')));
+app.use('/participants', express.static(path.join(__dirname, '../dist')));
 app.use('/participant', participant);
 
 mongoose.connect('mongodb://chief:123456@ds131687.mlab.com:31687/secretfriend', {

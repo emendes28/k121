@@ -1,0 +1,10 @@
+{
+    "Title": "Amigo Secreto",
+    "nameHead": "Nome",
+    "emailHead": "Email",
+    "friendHead": "Amigo",
+    "editOp": "",
+    "deleteOp": "",
+    "titleAdd": "Adicionar novo Participante",
+    "saveBtn" : "Salvar"
+}
