@@ -6,6 +6,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 
 const participant = require('./routes/participant');
+const raffle = require('./routes/raffle');
 const app = express();
 
 mongoose.Promise = require('bluebird');
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({ 'extended': 'false' }));
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
 app.use('/participants', express.static(path.join(__dirname, '../frontend/dist')));
 app.use('/participant', participant);
+app.use('/raffle', raffle);
 
 mongoose.connect('mongodb://chief:123456@ds131687.mlab.com:31687/secretfriend', {
     useMongoClient: true, promiseLibrary: require('bluebird')
