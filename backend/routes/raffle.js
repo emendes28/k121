@@ -7,7 +7,8 @@ const domain = 'sandboxd3df4a81cf18480bbc9c40b86cea7076.mailgun.org';
 const mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 let friend = "";
 const ParticipantClass = class  { 
-  constructor(n,e,f) {
+  constructor(id,n,e,f) {
+    this._id = id;
     this.friend = f;
     this.name = n;
     this.email = e;
@@ -58,11 +59,21 @@ const mail =  (to,who) => {
   }
 }; 
 
+const already = (all,name) => {
+  all.forEach(p=> {
+    let friend = p.friend;
+    if(friend == name ){
+      return false;
+    }
+
+  })
+  return true;
+}
 
 const sortParticipants = (all,name) => {
   all.forEach(p=> {
     let friend = p.name;
-    if(friend != name){
+    if(friend != name && already(all,friend)){
       console.log(`name atual ${name} amigo ${p.name}`);
       this.friend =  friend;
       return;
@@ -77,8 +88,12 @@ router.get('/', (req, res, next) => {
     console.log(participants);
   participants.forEach(p => {            
       sortParticipants(participants,p.name);      
-      participantsWithFriend.push(new ParticipantClass(p.name,p.email,this.friend));
-      Participant.findByIdAndUpdate(p.id, p);
+      let participant = new ParticipantClass(p._id,p.name,p.email,this.friend);
+      participantsWithFriend.push(participant);
+      Participant.findByIdAndUpdate(p._id, participant, (err, post) => {
+        if (err) return next(err);
+        console.log(`post${post}`);
+      })
       mailgun.messages().send(mail(p.to,this.friend));
     });
     
