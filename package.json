@@ -4,9 +4,9 @@
   "description": "one app for secret friend ",
   "main": "backend/app.js",
   "scripts": {
-    "start": "node ../backend/bin/www",
+    "start": "node ./backend/bin/www",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall":"node  ../backend/bin/www"
+    "postinstall":"node ./backend/bin/www"
   },
   "repository": {
     "type": "git",
