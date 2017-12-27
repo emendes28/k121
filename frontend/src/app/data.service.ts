@@ -5,20 +5,25 @@ import { Participant } from "./models/participant";
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-
 export class DataService {
   private apiRoot:string = `${location.origin}/participant/`;
+  private apiRaffle:string = `${location.origin}/raffle/`;
 
   private participants = new BehaviorSubject<Array<Participant>>(new Array<Participant>());
   participant = this.participants.asObservable();
 
   constructor(private http: HttpClient) { }
 
-  getParticipants(id:any):Observable<Participant[]> {
-    let uri = id==undefined?this.apiRoot:`${this.apiRoot}${id}`
-    let participants = this.http.get<Participant[]>(uri);
+  getParticipants():Observable<Participant[]> {
+    let participants = this.http.get<Participant[]>(this.apiRoot);
     this.participant = participants;
     return participants;
+  }
+
+  getParticipantsById(id:any):Observable<Participant> {
+    let uri = `${this.apiRoot}${id}`;
+    let participant = this.http.get<Participant>(uri);
+    return participant;
   }
 
   saveParticipant(participant:Participant):Observable<any> {
@@ -26,16 +31,19 @@ export class DataService {
   }
 
   updateParticipant(participant:Participant):Observable<any> {
-    return this.http.put(`${this.apiRoot}${participant.id}`, participant);
+    return this.http.put(`${this.apiRoot}${participant._id}`, participant);
   }
 
   deleteParticipant(participant:Participant):Observable<any> {
-    return this.http.delete(`${this.apiRoot}${participant.id}`);
+    return this.http.delete(`${this.apiRoot}${participant._id}`);
   }
-  sortition():Observable<Participant[]> {
-    let participants = this.http.get<Participant[]>(`${this.apiRoot}ruffle`);
-    this.participant = participants;
-    return participants;
+  
+  sortitionParticipants() {
+    let participants = this.participants.value;
+    if(!participants){
+      participants = [];
+    }
+    this.http.post(this.apiRaffle,participants);
   }
 
 }

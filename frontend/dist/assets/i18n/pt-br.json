@@ -1,0 +1,15 @@
+{
+    "Title": "Amigo Secreto",
+    "nameHead": "Nome",
+    "emailHead": "Email",
+    "friendHead": "Amigo",
+    "editBtn": "Editar",
+    "deleteBtn": "Excluir",
+    "titleAdd": "Adicionar novo Participante",
+    "saveBtn" : "Salvar",
+    "sortitionBtn" : "Realizar Sorteio",
+    "titleUpdate": "Atualizar Dados do Participante",
+    "updateBtn" : "Atualizar",
+    "viewBtn" : "Detalhe",
+    "home" : "Inicio"
+}

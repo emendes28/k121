@@ -1,9 +1,13 @@
 
-<div class="jumbumtron">
-<router-outlet></router-outlet>
-
-
-<button (click)="switchLanguage('en')">English</button>
-<button (click)="switchLanguage('fr')">Frances</button>
-<button (click)="switchLanguage('pt-br')">Português Brasileiro</button>
+  <header>
+      <ul>
+          <li class="active"><a  (click)="goHome()" translate>home</a></li>
+          <li style="float:right"><a (click)="switchLanguage('en')">English</a></li>
+          <li style="float:right"><a (click)="switchLanguage('fr')">Français</a></li>
+          <li style="float:right"><a (click)="switchLanguage('pt-br')">Português Brasileiro</a></li>
+      </ul>
+  </header>
+<div class="container conteudo">   
+  <br style="clear:both" />
+    <router-outlet></router-outlet>
 </div>

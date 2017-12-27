@@ -13,36 +13,40 @@ import { TranslateService } from '@ngx-translate/core';
 export class ParticipantCreateComponent implements OnInit {
 
   participant: Participant;
-
+  isUpdate:boolean = false;
   constructor(private data: DataService, private route: ActivatedRoute, private router: Router,
     private translate: TranslateService) {
       translate.setDefaultLang('en');
     }
 
   ngOnInit() {
-    this.route.snapshot.params['id']== undefined ? this.participant = new Participant():
-    this.getParticipantDetail(this.route.snapshot.params['id']);
+    this.participant = new Participant();
+    if(this.route.snapshot.params['id']== undefined) {       
+       this.isUpdate = false;
+    } else {
+      this.isUpdate = true;
+      this.getParticipantDetail(this.route.snapshot.params['id']);
+    }
   }
 
   getParticipantDetail(id: number) {
-    this.data.getParticipants(id).subscribe(data =>{
-      data.forEach(f=> this.participant= f);
+    this.data.getParticipantsById(id).subscribe(data =>{
+      this.participant = data;
     });
   }
 
   save(){
-    if(this.participant.id != undefined){
-      this.data.updateParticipant(this.participant).subscribe(res =>{
-        let id = res['_id'];
-        this.router.navigate(['/participant-details',id]);
-      }, err => {console.log(err);});
-    } else {
       this.data.saveParticipant(this.participant).subscribe(res =>{
         let id = res['_id'];
         this.router.navigate(['/participant-details',id]);
-      }, err => {console.log(err);});
-    }
+      }, err => {console.log(err);});    
   }  
 
+  update(){
+      this.data.updateParticipant(this.participant).subscribe(res =>{
+        let id = res['_id'];
+        this.router.navigate(['/participant-details',id]);
+      }, err => {console.log(err);});    
+  }
   
 }

@@ -1,33 +1,44 @@
-<div class="container">
+<div class="color-dark">
+  <h1 translate>Title
     <a [routerLink]="['/participant-create']" class="btn btn-default btn-lg">
       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     </a>
-  <h1 translate>Title</h1>
+  </h1>
+
+  <button class="btn btn-primary" (click)="sortition()" translate>
+    <span class="glyphicon glyphicons-playing-dices" aria-hidden="true"></span>
+    sortitionBtn
+  </button>
+
   <table class="table">
     <thead>
       <tr>
         <th translate>nameHead</th>
-        <th translate>emailHead</th>
-        <th translate>friendHead</th>              
+        <th translate>friendHead</th>
+        <th translate>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let participant of participants">
+      <tr *ngFor="let participant of participants; let i = index;" [@participants]="participants.length">
         <td>{{ participant.name}}</td>
-        <td>{{ participant.email}}</td>
         <td>{{ participant.friend}}</td>
-        <td translate (click)="edit(participant)">            
-              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-            editOp</td>
-        <td translate (click)="delete(participant)">            
-              <span class="glyphicon glyphicon-bin" aria-hidden="true"></span>
-            deleteOp</td>
+        <td > 
+            <button class="btn btn-warning" (click)="viewDetails(participant)" translate>
+          <span class="glyphicon glyphicons-search" aria-hidden="true"></span>viewBtn</button>
+        </td>
+        <td>
+          <button class="btn btn-info" (click)="edit(participant)" translate>
+            <span class="glyphicon glyphicons-playing-dices" aria-hidden="true"></span>
+            editBtn
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="delete(participant, i)" translate>
+            <span class="glyphicon glyphicons-playing-dices" aria-hidden="true"></span>
+            deleteBtn
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
 </div>
-
-<button class="btn btn-primary" (click)="sortition()" translate>
-<span class="glyphicon glyphicons-playing-dices" aria-hidden="true"></span>
-sortitionBtn
-</button>

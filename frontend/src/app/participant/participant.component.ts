@@ -1,13 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Participant } from '../models/participant';
 import { DataService } from "../data.service";
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from "@angular/router";
-
+import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
 @Component({
   selector: 'app-participant',
   templateUrl: './participant.component.html',
-  styleUrls: ['./participant.component.css']
+  styleUrls: ['./participant.component.css'],
+  
+  encapsulation: ViewEncapsulation.None,
+  animations: [
+    trigger('participants',[
+      transition('* => *',[
+        query(':enter', style({ opacity: 0}), {optional : true}),
+        query(':enter', stagger('300ms',[
+          animate('.6s ease-in',keyframes([
+            style({ opacity: 0, transform :'translateY(-75%)', offset: 0}),
+            style({ opacity: .5, transform :'translateY(35px)', offset: .3}),
+            style({ opacity: 1, transform :'translateY(0)', offset: 1}),
+          ]))]), {optional : true}),
+        query(':leave', stagger('300ms',[
+          animate('.6s ease-in',keyframes([
+            style({ opacity: 1, transform :'translateY(0)', offset: 0}),
+            style({ opacity: .5, transform :'translateY(35px)', offset: .3}),
+            style({ opacity: 0, transform :'translateY(-75%)', offset: 1}),
+          ]))]), {optional : true})
+      ])
+    ])
+  ]
 })
 export class ParticipantComponent implements OnInit {
 
@@ -20,19 +41,31 @@ export class ParticipantComponent implements OnInit {
               }
 
   ngOnInit() {
-    this.data.getParticipants(undefined).subscribe(res => this.participants = res);
+    this.data.getParticipants().subscribe(res => this.participants = res);
   }
 
-  edit(participant:Participant){
-    this.router.navigate(['/participant-create',participant.id]);
-  }
   
-  delete(participant:Participant){
-    this.data.deleteParticipant(participant);
+  
+  viewDetails(participant:Participant){
+    console.log(participant);
+    this.router.navigate(['/participant-details',participant._id]);
   }
 
 
   sortition(){
-    this.data.sortition().subscribe(res => this.participants = res);  
+    this.data.sortitionParticipants();     
+    this.data.getParticipants().subscribe(res => this.participants = res);
+  }
+
+
+
+  edit(participant:Participant){
+    this.router.navigate(['/participant-create',participant._id]);
+  }
+  delete(participant:Participant, i){
+    const self = this;
+    this.data.deleteParticipant(participant).toPromise().then((data) => {
+      self.participants.splice(i,1);     
+    });
   }
 }

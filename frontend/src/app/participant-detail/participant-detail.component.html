@@ -6,4 +6,14 @@
     <dt translate>friendHead</dt>
     <dd>{{ participant.friend }}</dd>
   </dl>
+
+  <button class="btn btn-info" (click)="edit(participant)" translate>
+      <span class="glyphicon glyphicons-playing-dices" aria-hidden="true"></span>
+      editBtn
+    </button>
+
+    <button class="btn btn-danger" (click)="delete(participant)" translate>
+        <span class="glyphicon glyphicons-playing-dices" aria-hidden="true"></span>
+        deleteBtn
+      </button>
 </div>

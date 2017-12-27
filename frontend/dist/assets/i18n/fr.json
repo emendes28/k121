@@ -1,0 +1,14 @@
+{
+    "Title": "Ami secret",
+    "nameHead": "Prénom",
+    "emailHead": "Email",
+    "friendHead": "Ami",
+    "editBtn": "Modifier",
+    "deleteBtn": "Effacer",
+    "titleAdd": "Ajouter un nouveau participant",
+    "saveBtn" : "Enregistrer",
+    "sortitionBtn" : "Dessiner",
+    "titleUpdate": "Mettre à jour le participant",
+    "updateBtn" : "Mettre à jour",
+    "home" : "Accueil"
+}

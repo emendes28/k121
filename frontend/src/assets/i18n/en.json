@@ -3,9 +3,13 @@
     "nameHead": "Name",
     "emailHead": "Email",
     "friendHead": "Friend",
-    "editOp": "Edit",
-    "deleteOp": "Delete",
+    "editBtn": "Edit",
+    "deleteBtn": "Delete",
     "titleAdd": "Add new Participant",
     "saveBtn" : "Save",
-    "sortitionBtn" : "Raffle"
+    "sortitionBtn" : "Raffle",
+    "titleUpdate": "Update Participant",
+    "updateBtn" : "Update",
+    "viewBtn" : "View",
+    "home" : "Home"
 }

@@ -3,9 +3,13 @@
     "nameHead": "Nome",
     "emailHead": "Email",
     "friendHead": "Amigo",
-    "editOp": "",
-    "deleteOp": "",
+    "editBtn": "Editar",
+    "deleteBtn": "Excluir",
     "titleAdd": "Adicionar novo Participante",
     "saveBtn" : "Salvar",
-    "sortitionBtn" : "Realizar Sorteio"
+    "sortitionBtn" : "Realizar Sorteio",
+    "titleUpdate": "Atualizar Dados do Participante",
+    "updateBtn" : "Atualizar",
+    "viewBtn" : "Detalhe",
+    "home" : "Inicio"
 }

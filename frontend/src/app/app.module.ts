@@ -6,6 +6,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { environment } from '../environments/environment';
 import { ParticipantComponent } from './participant/participant.component';
@@ -30,7 +31,8 @@ import { ParticipantCreateComponent } from './participant-create/participant-cre
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule,    
+    HttpClientModule,   
+    BrowserAnimationsModule,    
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
