@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cd frontend && ng build && node ../backend/bin/www",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "cd frontend && ng build --prod --aot --build-optimizer && node  ../backend/bin/www"
+    "postinstall": "cd frontend && ng build && node  ../backend/bin/www"
   },
   "repository": {
     "type": "git",
