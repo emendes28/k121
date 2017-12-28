@@ -5,7 +5,6 @@ const Participant = require('../models/Participant.js');
 const api_key = 'key-2aa1b759638496b6a1f56b9257d76940';
 const domain = 'sandboxd3df4a81cf18480bbc9c40b86cea7076.mailgun.org';
 const mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
-let friend = "";
 const ParticipantClass = class  { 
   constructor(id,n,e,f) {
     this._id = id;
@@ -14,48 +13,30 @@ const ParticipantClass = class  {
     this.email = e;
   }
 }
+const participantsWithFriend = [];
 const htmlEmail = (who) => `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        body {
-            background-image: url('https://simple-secret-friend.herokuapp.com/assets/background.jpg');
-            background-repeat: no-repeat;
-            background-origin: content-box;
-            background-attachment: fixed;
-            background-position: center; 
-            background-size: auto;
-        }
-        h1{
-            color: whitesmoke;
-            padding-top: 30%;
-            padding-left: 31%;
-        } 
-        h2{
-            color: whitesmoke;
-            padding-top: 1%;
-            padding-left: 45%;
-        }
-    </style>
+    <title>Document</title>    
 </head>
 <body>
+
     <div>
-    <h1>Seu amigo secreto é</h1>
-    <h2>${who}</h2>
+    <h1 style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;">Seu amigo secreto é</h1>
+    <h2  style="font-family: Arial, sans-serif; font-size: 48px;">${who}</h2>
     </div>
 
 </body>
 </html>`;
 const mail =  (to,who) => { 
   return {
-    from: 'Chief of Secret <postmaster@sandboxd3df4a81cf18480bbc9c40b86cea7076.mailgun.org>',
+    from: 'postmaster@sandboxd3df4a81cf18480bbc9c40b86cea7076.mailgun.org',
     to: to,
     subject: 'Secret Friend',
-    text: htmlEmail(who)
+    html: htmlEmail(who)
   }
 }; 
 
@@ -70,34 +51,26 @@ const already = (all,name) => {
   return true;
 }
 
-const sortParticipants = (all,name) => {
-  all.forEach(p=> {
-    let friend = p.name;
-    if(friend != name && already(all,friend)){
-      console.log(`name atual ${name} amigo ${p.name}`);
-      this.friend =  friend;
-      return;
-    }
-  })
-}
+const sortParticipants = (all) => {    
+  for(let i = 0;i<all.length;i++){
+    let p = all[i];
+    let friend = (i==all.length-1)?all[0]:all[i+1];          
+    console.info(`p: ${p} friend ${friend}`);
+    participantsWithFriend.push(new ParticipantClass(p._id,p.name,p.email,friend.name));    
+          
+  }
+};
 /* Raffle between participants. */
 router.get('/', (req, res, next) => {
-  const participantsWithFriend = [];
   Participant.find( (err, participants) => {
-    if (err) return next(err);
-    console.log(participants);
-  participants.forEach(p => {            
-      sortParticipants(participants,p.name);      
-      let participant = new ParticipantClass(p._id,p.name,p.email,this.friend);
-      participantsWithFriend.push(participant);
-      Participant.findByIdAndUpdate(p._id, participant, (err, post) => {
-        if (err) return next(err);
-        console.log(`post${post}`);
+    if (err) return next(err);                 
+    sortParticipants(participants);
+    participantsWithFriend.forEach(p => {         
+      Participant.findByIdAndUpdate(p._id, p, (err, post) => {
+        if (err) return next(err);       
       })
-      mailgun.messages().send(mail(p.to,this.friend));
-    });
-    
-    console.log(participantsWithFriend);
+      mailgun.messages().send(mail(p.email,p.friend));
+    });        
     res.json(participantsWithFriend);
   });
 });
