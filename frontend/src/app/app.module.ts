@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 import { ParticipantComponent } from './participant/participant.component';
 
-import { DataService } from "./data.service";
+import { DataService } from './data.service';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -31,8 +31,8 @@ import { ParticipantCreateComponent } from './participant-create/participant-cre
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule,   
-    BrowserAnimationsModule,    
+    HttpClientModule,
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

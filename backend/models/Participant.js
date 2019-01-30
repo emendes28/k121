@@ -6,4 +6,4 @@ const ParticipantShema = new mongoose.Schema({
     friend: String
 });
 
-module.exports = mongoose.model('Participant',ParticipantShema);
+module.exports = mongoose.model('Participant', ParticipantShema);

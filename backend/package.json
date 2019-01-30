@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint-fix": "eslint --fix-a"
   },
   "repository": {
     "type": "git",
@@ -28,5 +29,8 @@
     "mongoose": "^4.13.7",
     "morgan": "^1.9.0",
     "serve-favicon": "^2.4.5"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.1"
   }
 }

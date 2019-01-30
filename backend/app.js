@@ -19,7 +19,7 @@ app.use('/participants', express.static(path.join(__dirname, '../frontend/dist')
 app.use('/participant', participant);
 app.use('/raffle', raffle);
 
-mongoose.connect('mongodb://chief:123456@ds131687.mlab.com:31687/secretfriend', {
+mongoose.connect(process.env.MONGO_URL, {
     useMongoClient: true, promiseLibrary: require('bluebird')
 }).then(() => console.log('connection succesful'))
     .catch((err) => console.error(err));

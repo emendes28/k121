@@ -5,7 +5,7 @@ const Participant = require('../models/Participant.js');
 
 /* GET all participants. */
 router.get('/', (req, res, next) => {
-  Participant.find( (err, participants) => {
+  Participant.find((err, participants) => {
     if (err) return next(err);
     res.json(participants);
   });

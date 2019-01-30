@@ -20,8 +20,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let participant of participants; let i = index;" [@participants]="participants.length">
-        <td>{{ participant.name}}</td>
-        <td>{{ participant.friend}}</td>
+        <td>{{ participant.name }}</td>
+        <td>{{ participant.friend }}</td>
         <td > 
             <button class="btn btn-warning" (click)="viewDetails(participant)" translate>
           <span class="glyphicon glyphicons-search" aria-hidden="true"></span>viewBtn</button>
